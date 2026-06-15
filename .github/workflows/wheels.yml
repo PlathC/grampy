@@ -45,7 +45,9 @@ jobs:
           submodules: recursive
 
       - uses: pypa/cibuildwheel@v3.2
-
+        env:
+          CIBW_BEFORE_ALL_LINUX: dnf install -y tbb-devel || yum install -y tbb-devel
+          
       - name: Verify clean directory
         run: git diff --exit-code
         shell: bash
