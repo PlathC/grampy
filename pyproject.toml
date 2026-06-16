@@ -45,12 +45,8 @@ archs = ["auto64"]
 before-test = "pip install .[test]"
 test-command = "pytest {project}/tests"
 test-requires = "pytest"
+skip = ["*-musllinux*"]
 
 # Needed for full C++17 support
 [tool.cibuildwheel.macos.environment]
 MACOSX_DEPLOYMENT_TARGET = "10.15"
-
-
-[[tool.cibuildwheel.overrides]]
-select = "*-musllinux*"
-environment = { CMAKE_ARGS = "-DGEOGRAM_WITH_TBB=OFF" }
