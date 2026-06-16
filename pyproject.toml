@@ -50,3 +50,7 @@ test-requires = "pytest"
 [tool.cibuildwheel.macos.environment]
 MACOSX_DEPLOYMENT_TARGET = "10.15"
 
+
+[[tool.cibuildwheel.overrides]]
+select = "*-musllinux*"
+environment = { CMAKE_ARGS = "-DGEOGRAM_WITH_TBB=OFF" }
