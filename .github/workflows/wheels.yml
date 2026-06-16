@@ -46,10 +46,10 @@ jobs:
 
       - uses: pypa/cibuildwheel@v3.2
         env:
-          CIBW_BEFORE_ALL_LINUX: >
+          CIBW_BEFORE_ALL_LINUX:
             if command -v dnf >/dev/null; then dnf install -y tbb-devel;
             elif command -v yum >/dev/null; then yum install -y tbb-devel;
-            elif command -v apk >/dev/null; then apk add tbb-dev;
+            elif command -v apk >/dev/null; then apk add onetbb-dev;
             fi
 
       - name: Verify clean directory
