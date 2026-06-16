@@ -46,8 +46,11 @@ jobs:
 
       - uses: pypa/cibuildwheel@v3.2
         env:
-          CIBW_BEFORE_ALL_LINUX: dnf install -y tbb-devel || yum install -y tbb-devel
-          
+          CIBW_BEFORE_ALL_LINUX: >
+            command -v dnf && dnf install -y tbb-devel ||
+            command -v yum && yum install -y tbb-devel ||
+            command -v apk && apk add tbb-dev
+
       - name: Verify clean directory
         run: git diff --exit-code
         shell: bash
